@@ -8,7 +8,7 @@
                 <div class="panel-heading">Lista de Trabajadores Activos</div>
                 <div class="panel-body">
                     @if($workers->isEmpty())
-                    <h1 class="text-center">No existe trabajadores registrados</h1>
+                    <h1 class="text-center">No existen trabajadores registrados</h1>
                     @else
                         <table class="table table-hover">
                             <thead>
