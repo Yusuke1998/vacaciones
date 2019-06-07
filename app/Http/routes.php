@@ -23,6 +23,12 @@ if(version_compare(PHP_VERSION, '7.2.0', '>=')) {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::get('autor',function(){
+    return [
+        "Autor"=>"Jhonny Perez",
+        "Correo"=>"jhonnyjose1998@gmail.com",
+    ];
+})->name('autor');
 
 Route::group(['middleware' => ['ajax']], function () {
     Route::post('worker/state', 'ApiController@state');
@@ -30,6 +36,7 @@ Route::group(['middleware' => ['ajax']], function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+    Route::resource('usuarios','UserController');
     Route::get('/', 'HomeController@welcome');
     Route::get('/login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
     Route::get('/home', 'HomeController@index');
