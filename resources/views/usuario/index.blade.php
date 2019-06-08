@@ -33,7 +33,7 @@
                                             <a href="{{ route('usuario.editar',$usuario->id) }}">Editar usuario {{$usuario->username}}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('usuario.eliminar',$usuario->id) }}">Eliminar usuario {{$usuario->username}}</a>
+                                            <a href="{{ $usuario->id==1?'':route('usuario.eliminar',$usuario->id) }}">Eliminar usuario {{$usuario->username}}</a>
                                         </li>
                                     </ul>
                                 </div>

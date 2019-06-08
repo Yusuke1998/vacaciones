@@ -10,7 +10,7 @@
                 <div class="panel-body">
 
                     @if(empty($areas))
-                        <h3 class="text-center">Usted debe crear un area (Ejem Sistema, contabilidad, etc)</h3>
+                        <h3 class="text-center">Usted debe crear un area <small>(Ejemplo: Informatica, Contabilidad, Nomina, etc)</small></h3>
                         <div class="text-center">
                             <a href="{{ url('/area/create') }}" class="btn btn-success">
                                 Crear nueva Area

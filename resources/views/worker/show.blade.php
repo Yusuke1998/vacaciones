@@ -69,7 +69,7 @@
                                 <p><b>Fecha Ingreso:</b></p>
                             </div>
                             <div class="col-md-9">
-                                <p>{{$worker->date_in}}</p>
+                                <p>{{ date("d-m-Y", strtotime($worker->date_in)) }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -103,6 +103,7 @@
                         <thead>
                         <tr>
                             <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
                             <th>Nro Dias</th>
                             <th>Motivo</th>
                             <th>Observacion</th>
@@ -112,6 +113,7 @@
                         @foreach ($worker->vacations as $vacation)
                         @if($vacation->type == 'vacacion')
                         <tr>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
                             <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
                             <td>{{$vacation->days_taken}}</td>
                             <td>{{$vacation->reason}}</td>
@@ -133,6 +135,7 @@
                         <thead>
                         <tr>
                             <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
                             <th>Nro Dias</th>
                             <th>Motivo</th>
                             <th>Observacion</th>
@@ -142,6 +145,7 @@
                         @foreach ($worker->vacations as $vacation)
                         @if($vacation->type == 'permiso')
                         <tr>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
                             <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
                             <td>{{$vacation->days_taken}}</td>
                             <td>{{$vacation->reason}}</td>
@@ -163,6 +167,7 @@
                         <thead>
                         <tr>
                             <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
                             <th>Nro Dias</th>
                             <th>Motivo</th>
                             <th>Observacion</th>
@@ -172,6 +177,7 @@
                         @foreach ($worker->vacations as $vacation)
                         @if($vacation->type == 'falta')
                         <tr>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
                             <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
                             <td>{{$vacation->days_taken}}</td>
                             <td>{{$vacation->reason}}</td>

@@ -53,7 +53,7 @@
                                 <td scope="row">{{$worker->ci}}</td>
                                 <td>{{$worker->name}}</td>
                                 <td>{{$worker->cellphone}}</td>
-                                <td>{{$worker->date_in}}</td>
+                                <td>{{ date("d-m-Y", strtotime($worker->date_in)) }}</td>
                                 <td>{{$worker->area->name}}</td>
                                 <td>{{$worker->position}}</td>
                                 <td class="success">{{$vacationDays=MyHelper::vacationDays($worker->date_in)}}</td>
@@ -68,6 +68,7 @@
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <li><a href="{{ url('/worker/show/'.Crypt::encrypt($worker->id)) }}">Informacion de {{$worker->name}}</a></li>
                                             <li><a href="{{ url('/vacation/create/'.Crypt::encrypt($worker->id).'/'.Crypt::encrypt($worker->name)) }}">Asignar Vacaciones</a></li>
+                                            <li><a href="{{ route('pdf',Crypt::encrypt($worker->id)) }}">PDF de {{$worker->name}}</a></li>
                                         </ul>
                                     </div>
                                 </td>

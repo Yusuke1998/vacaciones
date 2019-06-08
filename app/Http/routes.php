@@ -52,6 +52,9 @@ Route::group(['middleware' => 'web'], function () {
     // VACACIONES
     Route::get('/vacation/create/{id_worker}/{name_worker}', 'VacationController@create');
     Route::post('/vacation/store', 'VacationController@store');
+
+    // PDF
+    Route::get('trabajador/{id}/pdf','WorkerController@pdf')->name('pdf');
 });
 
 Route::group(['middleware' => ['api']], function () {

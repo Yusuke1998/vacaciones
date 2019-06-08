@@ -138,6 +138,16 @@ class WorkerController extends Controller
         return view('worker.retirados')->with('workers',$workers->get());
     }
 
+    public function pdf($id)
+    {
+        try {
+            $id = \Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect('/home');
+        }
+
+        dd($id);
+    }
 
     public function state(){
         return 'hola';
