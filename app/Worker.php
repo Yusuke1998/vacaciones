@@ -14,6 +14,10 @@ class Worker extends Model
         return $this->hasMany('App\Vacation');
     }
 
+    public function date() {
+      return date("d-m-Y", strtotime($this->attributes['date_in']));
+    }
+
     public function scopeSearch($query, $search){
         if($search){
             return $query->where('name','LIKE',"%$search%")

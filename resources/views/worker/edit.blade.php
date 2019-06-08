@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Nombre:</label>
+                                <label class="col-md-4 control-label">Nombres y apellidos:</label>
 
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="name" value="{{ $worker->name }}">
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('ci') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">CI:</label>
+                                <label class="col-md-4 control-label">Cedula:</label>
 
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="ci" value="{{ $worker->ci }}">
@@ -74,7 +74,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Email:</label>
+                                <label class="col-md-4 control-label">Correo electronico:</label>
 
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" name="email" value="{{ $worker->email }}">
@@ -91,7 +91,7 @@
                                 <label class="col-md-4 control-label">Fecha de Ingreso:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="date-in" name="date_in" value="{{ $worker->date_in }}">
+                                    <input type="text" class="form-control" id="date-in" name="date_in" value="{{ $worker->date() }}">
 
                                     @if ($errors->has('date_in'))
                                     <span class="help-block">
