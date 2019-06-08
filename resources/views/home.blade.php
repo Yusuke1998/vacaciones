@@ -6,6 +6,18 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Lista de Trabajadores Activos</div>
+                @if($workers->isEmpty())
+                @else
+                <div class="panel-title">
+                    <form class="form-inline active-cyan-4" id="form-search" method="post" action="{{ route('index') }}">
+                    {{ csrf_field() }}
+                      <input name="search" id="search" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar Empleado(s)" aria-label="Search">
+                      <i class="fa fa-search" id="icon-search" aria-hidden="true"></i>
+                      <small><span id="text"></span></small>
+                    </form>
+                </div>  
+                @endif
+
                 <div class="panel-body">
                     @if($workers->isEmpty())
                     <h1 class="text-center">No existen trabajadores registrados</h1>
@@ -23,7 +35,7 @@
                                 <th></th>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>Cedula</th>
                                 <th>Nombre</th>
                                 <th>Celular</th>
                                 <th>Fecha Entrada</th>
@@ -38,7 +50,7 @@
                             <tbody>
                             @foreach ($workers as $worker)
                             <tr>
-                                <td scope="row">{{$worker->id}}</td>
+                                <td scope="row">{{$worker->ci}}</td>
                                 <td>{{$worker->name}}</td>
                                 <td>{{$worker->cellphone}}</td>
                                 <td>{{$worker->date_in}}</td>
@@ -69,4 +81,24 @@
         </div>
     </div>
 </div>
+@endsection
+@section('javascript')
+<script>
+    $('document').ready(function(){
+        $('#form-search').click(function(e){
+            buscar();
+        });
+        $('#icon-search').click(function(){
+            buscar();
+        });
+
+        function buscar(){
+            let search = $('#search').val();
+            let text = $('#text');
+            if (search==''||search==null) {
+                text.html('Puedes buscar por Cedula, Nombre, Apellido, Correo, Cargo o Fecha de entrada (dia-mes-año)');
+            }
+        }
+    });
+</script>
 @endsection

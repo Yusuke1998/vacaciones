@@ -53,13 +53,15 @@
                             <li><a href="{{ url('/area') }}">Listar Areas</a></li>
                         </ul>
                     </li>
+                    @if(Auth::User()->rol === 'administrador')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/usuarios/create') }}">Crear Usuario</a></li>
-                            <li><a href="{{ url('/usuarios') }}">Listar Usuarios</a></li>
+                            <li><a href="{{ url('/usuario/create') }}">Crear Usuario</a></li>
+                            <li><a href="{{ url('/usuario') }}">Listar Usuarios</a></li>
                         </ul>
                     </li>
+                    @endif
                 </ul>
                 @endif
                 <!-- Right Side Of Navbar -->
@@ -68,7 +70,7 @@
                     @if (!Auth::guest())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">

@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
 	        'rol' => 'administrador',
 	        'email' => 'admin@admin.com',
 	        'password' => bcrypt('admin'),
-	        'api_token' => str_random(50),
+	        // 'api_token' => str_random(50),
 	        'remember_token' => str_random(10),
         ]);
 

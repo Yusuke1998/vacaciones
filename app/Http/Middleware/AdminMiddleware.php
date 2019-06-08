@@ -8,10 +8,10 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-    	if (\Auth::User()->rol === 'adminsistrador') {
+    	if (\Auth::User()->rol==='administrador') {
         	return $next($request);
     	}else{
-    		return redirect(route('autor'));
+    		return redirect(url('/home'));
     	}
     }
 }

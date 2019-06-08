@@ -8,25 +8,14 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $workers = Worker::where('state',1);
-
+        $workers = Worker::search($request->search)->where('state',1);
         return view('home')->with('workers',$workers->get());
     }
 

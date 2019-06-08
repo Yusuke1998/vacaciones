@@ -15,11 +15,6 @@ class AreaController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $areas = Area::all();
@@ -29,6 +24,26 @@ class AreaController extends Controller
     public function create()
     {
         return view('area.create');
+    }
+
+    public function edit($id)
+    {
+        $area = Area::find($id);
+        return view('area.edit',compact('area'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $area = Area::find($id);
+        $area->update($request->all());
+        return redirect(url('/area'));
+    }
+
+    public function destroy($id)
+    {
+        $area = Area::find($id);
+        $area->delete();
+        return redirect(url('/area'));
     }
 
     public function store(Request $request)
