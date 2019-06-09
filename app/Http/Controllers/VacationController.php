@@ -55,7 +55,7 @@ class VacationController extends Controller
             'type' => 'required',
             'days_taken' => 'required|numeric',
             'reason' => 'required',
-            'observations' => 'required',
+            'observations' => 'required|min:5',
             'date_init' => 'required',
             'worker_id' => 'required',
         ]);

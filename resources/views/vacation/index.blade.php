@@ -21,8 +21,8 @@
                             <tr>
                                 <td>{{ $vacacion->type }}</td>
                                 <td>{{ $vacacion->reason }}</td>
-                                <td>{{ $vacacion->date_init }}</td>
-                                <td>{{ $vacacion->date_end }}</td>
+                                <td>{{ date("d-m-Y", strtotime($vacacion->date_init))}}</td>
+                                <td>{{ date("d-m-Y", strtotime($vacacion->date_end))}}</td>
                                 <td><a href="{{ route('vacacion.pdf',Crypt::encrypt($vacacion->id)) }}" title="descargar archivo pdf">PDF</a></td>
                             </tr>
                         @endforeach

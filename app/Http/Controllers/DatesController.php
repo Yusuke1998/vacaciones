@@ -47,8 +47,8 @@ class DatesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'date' => 'required',
-            'description' => 'required',
+            'date' => 'required|unique:dates',
+            'description' => 'required|min:5',
         ]);
 
         $date = $request['date'];

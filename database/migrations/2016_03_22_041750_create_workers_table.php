@@ -10,7 +10,7 @@ class CreateWorkersTable extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('ci');
+            $table->string('ci')->unique();
             $table->string('cellphone');
             $table->string('photo');
             $table->date('date_in');

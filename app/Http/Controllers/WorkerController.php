@@ -30,12 +30,12 @@ class WorkerController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'ci' => 'required',
+            'ci' => 'required|unique:workers',
             'cellphone' => 'required',
             'photo' => 'required',
             'date_in' => 'required',
             'position' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:workers',
             'area_id' => 'required'
         ]);
 
@@ -94,12 +94,12 @@ class WorkerController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'ci' => 'required',
+            'ci' => 'required|unique:workers',
             'cellphone' => 'required',
             'photo' => 'required',
             'date_in' => 'required',
             'position' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:workers',
             'area_id' => 'required'
         ]);
 
@@ -122,7 +122,7 @@ class WorkerController extends Controller
         $this->validate($request, [
             'id_worker' => 'required',
             'fecha_retiro' => 'required',
-            'motivo_retiro' => 'required',
+            'motivo_retiro' => 'required|min:5',
         ]);
         $worker = Worker::find($request['id_worker']);
         $worker->state = '0';

@@ -28,9 +28,9 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name'      => 'required',
-            'username'  => 'required',
+            'username'  => 'required|unique:users',
             'rol'       => 'required',
-            'email'     => 'required',
+            'email'     => 'required|unique:users',
             'password'  => 'required'
         ]);
 
@@ -60,9 +60,9 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name'      => 'required',
-            'username'  => 'required',
+            'username'  => 'required|unique:users',
             'rol'       => 'required',
-            'email'     => 'required',
+            'email'     => 'required|unique:users',
         ]);
 
         $usuario = User::find($id);

@@ -139,6 +139,7 @@ return [
         'photo'             =>  'foto',
         'fecha_retiro'      =>  'fecha de retiro',
         'motivo_retiro'     =>  'motivo de retiro',
+        'date'              =>  'fecha'
     ],
 
 ];
