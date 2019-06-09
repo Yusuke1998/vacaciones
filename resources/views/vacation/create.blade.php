@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('observations') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Observations:</label>
+                            <label class="col-md-4 control-label">Observación:</label>
 
                             <div class="col-md-6">
                                 <textarea class="form-control" name="observations" rows="5" id="observations" value="{{ old('observations') }}"></textarea>

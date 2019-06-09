@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Vacation;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Helpers\MyHelper;
 
 class VacationController extends Controller
 {
@@ -36,12 +35,19 @@ class VacationController extends Controller
     {
         $this->validate($request, [
             'type' => 'required',
-            'days_taken' => 'required',
+            'days_taken' => 'required|numeric',
             'reason' => 'required',
             'observations' => 'required',
             'date_init' => 'required',
             'worker_id' => 'required',
         ]);
+
+// Aqui calculo la fecha de finalizacion de las vacaciones tomando en cuenta el numero de dias.
+// Descontando fines de semana y feriados. 
+   
+        $fecha_inicio = $request['date_init'];
+        $numero_dias = $request['days_taken'];
+        $fecha_final = MyHelper::getFechaFinal($fecha_inicio,$numero_dias);
 
         $vacation = new Vacation();
         $vacation->type = $request['type'];
@@ -49,10 +55,9 @@ class VacationController extends Controller
         $vacation->reason = $request['reason'];
         $vacation->observations = $request['observations'];
         $vacation->date_init = date("Y-m-d", strtotime($request['date_init']));
+        $vacation->date_end = $fecha_final;
         $vacation->worker_id = $request['worker_id'];
-
         $vacation->save();
-
         return redirect('/home');
     }
 }

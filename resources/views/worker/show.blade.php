@@ -113,8 +113,8 @@
                         @foreach ($worker->vacations as $vacation)
                         @if($vacation->type == 'vacacion')
                         <tr>
-                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
-                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_init))}}</th>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_end))}}</th>
                             <td>{{$vacation->days_taken}}</td>
                             <td>{{$vacation->reason}}</td>
                             <td>{{$vacation->observations}}</td>
@@ -145,8 +145,8 @@
                         @foreach ($worker->vacations as $vacation)
                         @if($vacation->type == 'permiso')
                         <tr>
-                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
-                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_init))}}</th>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_end))}}</th>
                             <td>{{$vacation->days_taken}}</td>
                             <td>{{$vacation->reason}}</td>
                             <td>{{$vacation->observations}}</td>
@@ -177,8 +177,8 @@
                         @foreach ($worker->vacations as $vacation)
                         @if($vacation->type == 'falta')
                         <tr>
-                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
-                            <th scope="row">{{date("d/m/Y", strtotime($vacation->created_at))}}</th>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_init))}}</th>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_end))}}</th>
                             <td>{{$vacation->days_taken}}</td>
                             <td>{{$vacation->reason}}</td>
                             <td>{{$vacation->observations}}</td>

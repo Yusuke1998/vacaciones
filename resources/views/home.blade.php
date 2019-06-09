@@ -60,7 +60,6 @@
                                 <td class="success">{{$vacationTaken=MyHelper::vacationTaken($worker->id)}}</td>
                                 <td class="success">{{$vacationDays-$vacationTaken}}</td>
                                 <td>
-                                    <!-- Single button -->
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-bars"></i>
