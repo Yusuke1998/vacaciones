@@ -50,6 +50,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/area/update/{id}', 'AreaController@update');
 
     // FERIADOS
+    Route::get('/fecha', 'DatesController@index');
+    Route::get('/fecha/create', 'DatesController@create');
+    Route::get('/fecha/edit/{id}', 'DatesController@edit');
+    Route::post('/fecha/store', 'DatesController@store');
+    Route::post('/fecha/update/{id}', 'DatesController@update');
 
     // VACACIONES
     Route::get('/vacation/create/{id_worker}/{name_worker}', 'VacationController@create');

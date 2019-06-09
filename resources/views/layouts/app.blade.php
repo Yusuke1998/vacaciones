@@ -53,6 +53,13 @@
                             <li><a href="{{ url('/area') }}">Listar Areas</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Feriados <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/fecha/create') }}">Crear Feriado</a></li>
+                            <li><a href="{{ url('/fecha') }}">Listar Feriados</a></li>
+                        </ul>
+                    </li>
                     @if(Auth::User()->rol === 'administrador')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>

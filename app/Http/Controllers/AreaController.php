@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Area;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 

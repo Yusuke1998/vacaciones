@@ -8,6 +8,7 @@
 
 namespace App\Helpers;
 use App\Vacation;
+use App\Date;
 
 class MyHelper{
 
@@ -78,7 +79,8 @@ class MyHelper{
     }
 
     //Esta pequeña funcion me crea una fecha final sin sabados, domingos o feriados  
-    public static function getFechaFinal($fechaInicial,$dias,$feriados = array()){
+    public static function getFechaFinal($fechaInicial,$dias){
+        $feriados = Date::all();
         //Timestamp De Fecha De Comienzo
         $comienzo = strtotime($fechaInicial);
         //Inicializo la Fecha Final
@@ -91,17 +93,20 @@ class MyHelper{
             //Le sumo un dia a la fecha final (86400 Segundos) 
             $final += 86400; 
             //Inicializo a FALSE la variable para saber si es feriado 
-            $es_feriado = FALSE; 
-            //Recorro todos los feriados 
-            foreach ($feriados as $key => $feriado)
-            { 
-            //Verifico si la fecha Final actual es feriado o no 
-                if (date("Y-m-d", $final) === date("Y-m-d", strtotime($feriado))) 
+            $es_feriado = FALSE;
+            // Verifico que existan fechas en mi db 
+            if(!is_null($feriados) && !empty($feriados)){
+            //Recorro todos los feriados
+                foreach ($feriados as $key => $feriado)
                 { 
-                //En caso de ser feriado cambio mi variable a TRUE 
-                    $es_feriado = TRUE;
-                } 
-            }
+                //Verifico si la fecha Final actual es feriado o no 
+                    if (date("Y-m-d", $final) === date("Y-m-d", strtotime($feriado->date))) 
+                    { 
+                    //En caso de ser feriado cambio mi variable a TRUE 
+                        $es_feriado = TRUE;
+                    }
+                }
+            } 
             //Verifico que no sea un sabado, domingo o feriado 
             if (!(date("w", $final) == 6 || date("w", $final) == 0 || $es_feriado))
             { 

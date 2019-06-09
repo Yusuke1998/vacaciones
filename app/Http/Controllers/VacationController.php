@@ -5,6 +5,7 @@ use App\Vacation;
 use App\Worker;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Redirect;
 use App\Helpers\MyHelper;
 
@@ -85,6 +86,9 @@ class VacationController extends Controller
         } catch (DecryptException $e) {
             return redirect('/home');
         }
-        return $id;
+
+        $vacacion = Vacation::find($id);
+        $pdf = PDF::loadView('pdf.vacacion', compact('vacacion'));
+        return $pdf->stream('vacacion.pdf');
     }
 }
