@@ -49,12 +49,17 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/area/store', 'AreaController@store');
     Route::post('/area/update/{id}', 'AreaController@update');
 
+    // FERIADOS
+
     // VACACIONES
     Route::get('/vacation/create/{id_worker}/{name_worker}', 'VacationController@create');
     Route::post('/vacation/store', 'VacationController@store');
+    Route::get('/vacation/show/{id_vacation}', 'VacationController@show')->name('vacation.show');
+    Route::get('/vacation/index/{id_worker}', 'VacationController@index')->name('vacation.index');
 
     // PDF
-    Route::get('trabajador/{id}/pdf','WorkerController@pdf')->name('pdf');
+    Route::get('trabajador/{id}/pdf','WorkerController@pdf')->name('trabajador.pdf');
+    Route::get('vacacion/{id}/pdf','VacationController@pdf')->name('vacacion.pdf');
 });
 
 Route::group(['middleware' => ['api']], function () {

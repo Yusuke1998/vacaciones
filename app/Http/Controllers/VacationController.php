@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Vacation;
+use App\Worker;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -14,10 +15,26 @@ class VacationController extends Controller
         $this->middleware('auth');
     }
 
-
-    public function index()
+    public function index($id_worker)
     {
-        //
+        try {
+            $id = \Crypt::decrypt($id_worker);
+        } catch (DecryptException $e) {
+            return redirect('/home');
+        }
+
+        $trabajador = Worker::where('id',$id)->first();
+        return view('vacation.index',compact('trabajador'));
+    }
+
+    public function show($id_worker)
+    {
+        try {
+            $id = \Crypt::decrypt($id_worker);
+        } catch (DecryptException $e) {
+            return redirect('/home');
+        }
+        return $id;
     }
 
     public function create($id_worker,$name_worker)
@@ -42,9 +59,9 @@ class VacationController extends Controller
             'worker_id' => 'required',
         ]);
 
-// Aqui calculo la fecha de finalizacion de las vacaciones tomando en cuenta el numero de dias.
-// Descontando fines de semana y feriados. 
-   
+        // Aqui calculo la fecha de finalizacion de las vacaciones tomando en cuenta:
+        // El numero de dias tope.
+        // Fines de semana y feriados. 
         $fecha_inicio = $request['date_init'];
         $numero_dias = $request['days_taken'];
         $fecha_final = MyHelper::getFechaFinal($fecha_inicio,$numero_dias);
@@ -59,5 +76,15 @@ class VacationController extends Controller
         $vacation->worker_id = $request['worker_id'];
         $vacation->save();
         return redirect('/home');
+    }
+
+    public function pdf($id)
+    {
+        try {
+            $id = \Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect('/home');
+        }
+        return $id;
     }
 }

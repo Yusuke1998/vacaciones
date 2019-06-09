@@ -35,6 +35,9 @@ class MyHelper{
 
     public static function vacationTaken($id){
         $days_taken = Vacation::where('worker_id',$id)->sum('days_taken');
+        if (empty($days_taken)||!isset($days_taken)||is_null($days_taken)) {
+            $days_taken = 0;
+        }
         return $days_taken;
     }
 

@@ -42,7 +42,7 @@
                                 <th>Area</th>
                                 <th>Puesto</th>
                                 <th class="success">Ganados</th>
-                                <th class="success">Tomados</th>
+                                <th class="success">Tomados</a></th>
                                 <th class="success">Restantes</th>
                                 <th>Opciones</th>
                             </tr>
@@ -57,7 +57,12 @@
                                 <td>{{$worker->area->name}}</td>
                                 <td>{{$worker->position}}</td>
                                 <td class="success">{{$vacationDays=MyHelper::vacationDays($worker->date_in)}}</td>
-                                <td class="success">{{$vacationTaken=MyHelper::vacationTaken($worker->id)}}</td>
+                                <td class="success">
+                                    <span class="h4">{{$vacationTaken=MyHelper::vacationTaken($worker->id)}}</span>
+                                    @if($vacationTaken!=0)
+                                        / <a href="{{ url('/vacation/index/'.Crypt::encrypt($worker->id)) }}" class="h4" target="_blank">Ver</a>
+                                    @endif
+                                </td>
                                 <td class="success">{{$vacationDays-$vacationTaken}}</td>
                                 <td>
                                     <div class="btn-group">
@@ -67,7 +72,7 @@
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <li><a href="{{ url('/worker/show/'.Crypt::encrypt($worker->id)) }}">Informacion de {{$worker->name}}</a></li>
                                             <li><a href="{{ url('/vacation/create/'.Crypt::encrypt($worker->id).'/'.Crypt::encrypt($worker->name)) }}">Asignar Vacaciones</a></li>
-                                            <li><a href="{{ route('pdf',Crypt::encrypt($worker->id)) }}">PDF de {{$worker->name}}</a></li>
+                                            <li><a href="{{ route('trabajador.pdf',Crypt::encrypt($worker->id)) }}">PDF de {{$worker->name}}</a></li>
                                         </ul>
                                     </div>
                                 </td>

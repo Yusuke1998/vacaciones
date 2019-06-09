@@ -139,6 +139,7 @@
                             <th>Nro Dias</th>
                             <th>Motivo</th>
                             <th>Observacion</th>
+                            <th>Ver</th>
                         </tr>
                         </thead>
                         <tbody>
