@@ -15,8 +15,8 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $workers = Worker::search($request->search)->where('state',1);
-        return view('home')->with('workers',$workers->get());
+        $workers = Worker::search($request->search)->where('state',1)->paginate(4);
+        return view('home')->with('workers',$workers);
     }
 
     public function welcome(){

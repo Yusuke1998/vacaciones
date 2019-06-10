@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Area;
 use App\Worker;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 use App\Http\Requests;
 
@@ -146,7 +147,9 @@ class WorkerController extends Controller
             return redirect('/home');
         }
 
-        dd($id);
+        $trabajador = Worker::find($id);
+        $pdf = PDF::loadView('pdf.trabajador', compact('trabajador'));
+        return $pdf->stream('trabajador-'.time().'.pdf');
     }
 
     public function state(){

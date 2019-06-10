@@ -59,6 +59,31 @@ class VacationController extends Controller
             'date_init' => 'required',
             'worker_id' => 'required',
         ]);
+        $id = $request['worker_id'];
+        $worker = Worker::find($id);
+        $vacationDaysOld=$worker->days_taken_rest;
+        $vacationDaysNew=$request['days_taken'];
+
+        // Validar que no se registren mas vacaciones de las permitidas
+        if ($worker->days_taken_rest === null) {
+            $vacationDays=MyHelper::vacationDays($worker->date_in);
+            $worker->days_taken_rest = $vacationDays;
+            $worker->save();
+        }
+
+        $worker = Worker::find($id);
+        $vacationDaysOld=$worker->days_taken_rest;
+        $vacationDaysNew=$request['days_taken'];
+        $total = ($vacationDaysOld-$vacationDaysNew);
+
+        if ($total >= 0){
+            $worker->days_taken_rest = $total;
+            $worker->save();
+        }else{
+            return back()->with('info','Error, no puedes registrar vacaciones si ya consumiste los dias ganados o si superan la cantidad que te queda!');
+        }
+
+        // Validar que no se registren mas vacaciones de las permitidas
 
         // Aqui calculo la fecha de finalizacion de las vacaciones tomando en cuenta:
         // El numero de dias tope.
@@ -89,6 +114,6 @@ class VacationController extends Controller
 
         $vacacion = Vacation::find($id);
         $pdf = PDF::loadView('pdf.vacacion', compact('vacacion'));
-        return $pdf->stream('vacacion.pdf');
+        return $pdf->stream('vacacion-'.time().'.pdf');
     }
 }

@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     {!! Html::style('css/app.css') !!}
+    {!! Html::style('DataTables/datatables.min.css') !!}
     @yield('style')
 </head>
 <body id="app-layout">
@@ -95,6 +96,7 @@
     <!-- JavaScripts -->
     {!! Html::script('js/jquery.min.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('DataTables/datatables.min.js') !!}
     @yield('javascript')
 </body>
 </html>

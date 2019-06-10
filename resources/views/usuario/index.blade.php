@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Lista de Usuarios</div>
                 <div class="panel-body">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="tb">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -47,4 +47,11 @@
         </div>
     </div>
 </div>
+@endsection
+@section('javascript')
+<script type="text/javascript">
+    $(document).ready(function() {
+        var table = $('#tb').DataTable();
+    });
+</script>
 @endsection

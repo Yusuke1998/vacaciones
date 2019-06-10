@@ -21,7 +21,7 @@
                     @if($workers->isEmpty())
                         <h1 class="text-center">No existen Trabajadores Retirados</h1>
                     @else
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="tb">
                             <thead>
                             <tr>
                                 <th>Cedula</th>
@@ -53,4 +53,11 @@
         </div>
     </div>
 </div>
+@endsection
+@section('javascript')
+<script type="text/javascript">
+    $(document).ready(function() {
+        var table = $('#tb').DataTable();
+    });
+</script>
 @endsection

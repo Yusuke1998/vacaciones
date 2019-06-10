@@ -80,6 +80,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                    <div class="text-center">
+                        {!! $workers->render() !!}
+                    </div>
                     @endif
                 </div>
             </div>
