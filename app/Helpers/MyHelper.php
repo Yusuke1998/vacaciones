@@ -116,4 +116,43 @@ class MyHelper{
         }   
         return date('Y-m-d', $final);  
     }
+
+    //Esta pequeña funcion me crea una fecha final sin domingos o feriados  
+    public static function getSabadosFechaFinal($fechaInicial,$dias){
+        $feriados = Date::all();
+        //Timestamp De Fecha De Comienzo
+        $comienzo = strtotime($fechaInicial);
+        //Inicializo la Fecha Final
+        $final = $comienzo;
+        // Inicializo el contador
+        $i = 0;
+
+        while($i < $dias)
+        {  
+            //Le sumo un dia a la fecha final (86400 Segundos) 
+            $final += 86400; 
+            //Inicializo a FALSE la variable para saber si es feriado 
+            $es_feriado = FALSE;
+            // Verifico que existan fechas en mi db 
+            if(!is_null($feriados) && !empty($feriados)){
+            //Recorro todos los feriados
+                foreach ($feriados as $key => $feriado)
+                { 
+                //Verifico si la fecha Final actual es feriado o no 
+                    if (date("Y-m-d", $final) === date("Y-m-d", strtotime($feriado->date))) 
+                    { 
+                    //En caso de ser feriado cambio mi variable a TRUE 
+                        $es_feriado = TRUE;
+                    }
+                }
+            } 
+            //Verifico que no sea un domingo o feriado 
+            if (!(date("w", $final) == 0 || $es_feriado))
+            { 
+            //En caso de no ser domingo o feriado aumentamos nuestro contador 
+                $i++; 
+            }
+        }   
+        return date('Y-m-d', $final);  
+    }
 } 

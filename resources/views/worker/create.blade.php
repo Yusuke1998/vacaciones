@@ -23,7 +23,7 @@
                     @else
 
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-4">
+                        <div class="col-md-5 col-md-offset-4">
                             {!! Form::open(['route'=> 'worker.upload', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
                             <div class="dz-message">
                                 Seleccione la fotografia del Empleado
@@ -63,7 +63,7 @@
                                 <label class="col-md-4 control-label">Cedula:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="ci" value="{{ old('ci') }}">
+                                    <input type="number" class="form-control" name="ci" value="{{ old('ci') }}">
 
                                     @if ($errors->has('ci'))
                                     <span class="help-block">
@@ -77,7 +77,7 @@
                                 <label class="col-md-4 control-label">Numero Celular:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="cellphone" value="{{ old('cellphone') }}">
+                                    <input type="number" class="form-control" name="cellphone" value="{{ old('cellphone') }}">
 
                                     @if ($errors->has('cellphone'))
                                     <span class="help-block">
@@ -128,6 +128,7 @@
                                 </div>
                             </div>
 
+
                             <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Cargo:</label>
 
@@ -137,6 +138,62 @@
                                     @if ($errors->has('position'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('position') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('position_code') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Codigo de Cargo:</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="position_code" value="{{ old('position_code') }}">
+
+                                    @if ($errors->has('position_code'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('position_code') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('status_worker') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Estatus del trabajador:</label>
+
+                                <div class="col-md-6">
+                                    <select name="status_worker" class="form-control">
+                                        <option selected disabled>Seleccione un estatus...</option>
+                                        <option value="obrero">Obrero</option>
+                                        <option value="empleado">Empleado</option>
+                                        <option value="fijo">Fijo</option>
+                                        <option value="contratado">Contratado</option>
+                                    </select>
+
+                                    @if ($errors->has('status_worker'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('status_worker') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('saturday') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Trabaja los sabados?</label>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="si">
+                                            <input class="radio radio-inline" type="radio" name="saturday" id="si" value="1">
+                                        SI</label>
+
+                                        <label for="no">
+                                            <input class="radio radio-inline" checked type="radio" name="saturday" id="no" value="0">
+                                        NO</label>
+                                    </div>
+
+                                    @if ($errors->has('saturday'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('saturday') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -155,11 +212,6 @@
                     @endif
                 </div>
             </div>
-
-
-
-
-
         </div>
     </div>
 </div>

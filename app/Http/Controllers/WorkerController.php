@@ -37,18 +37,24 @@ class WorkerController extends Controller
             'date_in' => 'required',
             'position' => 'required',
             'email' => 'required|unique:workers',
-            'area_id' => 'required'
+            'area_id' => 'required',
+            'position_code' =>  'required',
+            'status_worker' =>  'required',
+            'saturday' => 'required'
         ]);
 
         $worker = new Worker();
         $worker->name = $request['name'];
         $worker->ci = $request['ci'];
+        $worker->saturday = $request['saturday'];
         $worker->cellphone = $request['cellphone'];
         $worker->photo = $request['photo'];
         $worker->date_in = date("Y-m-d", strtotime($request['date_in']));
         $worker->date_out = 0;
         $worker->position = $request['position'];
+        $worker->position_code = $request['position_code'];
         $worker->email = $request['email'];
+        $worker->status_worker = $request['status_worker'];
         $worker->state = '1';
         $worker->area_id = $request['area_id'];
         $worker->save();
@@ -95,18 +101,20 @@ class WorkerController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'ci' => 'required|unique:workers',
+            'ci' => 'required',
             'cellphone' => 'required',
             'photo' => 'required',
             'date_in' => 'required',
             'position' => 'required',
-            'email' => 'required|unique:workers',
-            'area_id' => 'required'
+            'email' => 'required',
+            'area_id' => 'required',
+            'saturday' => 'required'
         ]);
 
         $worker = Worker::find($request['id_worker']);
         $worker->name = $request['name'];
         $worker->ci = $request['ci'];
+        $worker->saturday = $request['saturday'];
         $worker->cellphone = $request['cellphone'];
         $worker->photo = $request['photo'];
         $worker->date_in = date("Y-m-d", strtotime($request['date_in']));

@@ -90,7 +90,13 @@ class VacationController extends Controller
         // Fines de semana y feriados. 
         $fecha_inicio = $request['date_init'];
         $numero_dias = $request['days_taken'];
-        $fecha_final = MyHelper::getFechaFinal($fecha_inicio,$numero_dias);
+
+        if ($worker->saturday == '1') {
+            $fecha_final = MyHelper::getSabadosFechaFinal($fecha_inicio,$numero_dias);
+        }else{
+            $fecha_final = MyHelper::getFechaFinal($fecha_inicio,$numero_dias);
+        }
+
 
         $vacation = new Vacation();
         $vacation->type = $request['type'];
@@ -111,9 +117,18 @@ class VacationController extends Controller
         } catch (DecryptException $e) {
             return redirect('/home');
         }
-
+        // Buscar vacacion por id
         $vacacion = Vacation::find($id);
-        $pdf = PDF::loadView('pdf.vacacion', compact('vacacion'));
+        // Fecha actual
+        $date_current = new \DateTime();
+        // Fecha de ingreso del trabajador
+        $date_init =  new \DateTime($vacacion->worker->date_in);
+        // Diferencia entre la fecha actual y la fecha de ingreso del trabajador
+        $difference = $date_current->diff($date_init);
+        // Años de diferencia
+        $año_trabajo = $difference->format('%y');
+
+        $pdf = PDF::loadView('pdf.vacacion', compact('vacacion','año_trabajo'));
         return $pdf->stream('vacacion-'.time().'.pdf');
     }
 }

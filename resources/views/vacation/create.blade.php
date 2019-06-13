@@ -23,7 +23,7 @@
                             <label class="col-md-4 control-label">Tipo:</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('type',['' => 'Seleccione un tipo...','vacacion' => 'Vacacion','falta' => 'Falta','permiso' => 'Permiso'],null, array('class' => 'form-control')) !!}
+                                {!! Form::select('type',['' => 'Seleccione un tipo...','falta' => 'Falta','permiso' => 'Permiso','adelantada' => 'Adelantada','atrasada' => 'Atrasada','reglamentaria' => 'Reglamentaria'],null, array('class' => 'form-control')) !!}
 
                                 @if ($errors->has('type'))
                                     <span class="help-block">

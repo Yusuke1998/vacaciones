@@ -74,10 +74,26 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                <p><b>Puesto:</b></p>
+                                <p><b>Cargo:</b></p>
                             </div>
                             <div class="col-md-9">
                                 <p>{{$worker->position}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p><b>Cod. Cargo:</b></p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{$worker->position_code}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p><b>Estatus:</b></p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{$worker->status_worker}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -93,9 +109,9 @@
 
                 </div>
             </div>
-            <div class="panel panel-success">
+            <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Vacaciones</h3>
+                    <h3 class="panel-title">Adelantadas</h3>
 
                 </div>
                 <div class="panel-body">
@@ -111,7 +127,71 @@
                         </thead>
                         <tbody>
                         @foreach ($worker->vacations as $vacation)
-                        @if($vacation->type == 'vacacion')
+                        @if($vacation->type == 'adelantada')
+                        <tr>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_init))}}</th>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_end))}}</th>
+                            <td>{{$vacation->days_taken}}</td>
+                            <td>{{$vacation->reason}}</td>
+                            <td>{{$vacation->observations}}</td>
+                        </tr>
+                        @endif
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Reglamentarias</h3>
+
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Nro Dias</th>
+                            <th>Motivo</th>
+                            <th>Observacion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($worker->vacations as $vacation)
+                        @if($vacation->type == 'reglamentaria')
+                        <tr>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_init))}}</th>
+                            <th scope="row">{{date("d/m/Y", strtotime($vacation->date_end))}}</th>
+                            <td>{{$vacation->days_taken}}</td>
+                            <td>{{$vacation->reason}}</td>
+                            <td>{{$vacation->observations}}</td>
+                        </tr>
+                        @endif
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Atrasadas</h3>
+
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Nro Dias</th>
+                            <th>Motivo</th>
+                            <th>Observacion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($worker->vacations as $vacation)
+                        @if($vacation->type == 'atrasada')
                         <tr>
                             <th scope="row">{{date("d/m/Y", strtotime($vacation->date_init))}}</th>
                             <th scope="row">{{date("d/m/Y", strtotime($vacation->date_end))}}</th>

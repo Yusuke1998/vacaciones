@@ -8,7 +8,7 @@
                 <div class="panel-heading">Editar Empleado</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-4">
+                        <div class="col-md-5 col-md-offset-4">
                             {!! Form::open(['route'=> 'worker.upload', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
                             <div class="dz-message">
                                 Seleccione la fotografia del Empleado
@@ -49,7 +49,7 @@
                                 <label class="col-md-4 control-label">Cedula:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="ci" value="{{ $worker->ci }}">
+                                    <input type="number" class="form-control" name="ci" value="{{ $worker->ci }}">
 
                                     @if ($errors->has('ci'))
                                     <span class="help-block">
@@ -63,7 +63,7 @@
                                 <label class="col-md-4 control-label">Numero Celular:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="cellphone" value="{{ $worker->cellphone }}">
+                                    <input type="number" class="form-control" name="cellphone" value="{{ $worker->cellphone }}">
 
                                     @if ($errors->has('cellphone'))
                                     <span class="help-block">
@@ -123,6 +123,62 @@
                                     @if ($errors->has('position'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('cellphone') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('position_code') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Codigo de Cargo:</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="position_code" value="{{ $worker->position_code }}">
+
+                                    @if ($errors->has('position_code'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('position_code') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('status_worker') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Estatus del trabajador:</label>
+
+                                <div class="col-md-6">
+                                    <select name="status_worker" class="form-control">
+                                        <option selected disabled>Seleccione un estatus...</option>
+                                        <option {{ ($worker->status_worker == 'obrero')?'selected':'' }} value="obrero">Obrero</option>
+                                        <option {{ ($worker->status_worker == 'empleado')?'selected':'' }} value="empleado">Empleado</option>
+                                        <option {{ ($worker->status_worker == 'fijo')?'selected':'' }} value="fijo">Fijo</option>
+                                        <option {{ ($worker->status_worker == 'contratado')?'selected':'' }} value="contratado">Contratado</option>
+                                    </select>
+
+                                    @if ($errors->has('status_worker'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('status_worker') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('saturday') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Trabaja los sabados?</label>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="si">
+                                            <input class="radio radio-inline" {{ ($worker->saturday)?'checked':'' }} type="radio" name="saturday" id="si" value="1">
+                                        SI</label>
+
+                                        <label for="no">
+                                            <input class="radio radio-inline" {{ ($worker->saturday)?'':'checked' }} type="radio" name="saturday" id="no" value="0">
+                                        NO</label>
+                                    </div>
+
+                                    @if ($errors->has('saturday'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('saturday') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -189,11 +245,12 @@
                     $('.dz-file-preview').hide();
                 });
                 this.on("success", function(file, res) {
-                    console.log('upload success...');
+                    // console.log('upload success...');
                     $('#path-photo').attr('value', res.path);
                     $('input[name="pic_url"]').val(res.path);
                     console.log(res.path);
                 });
+                
                 var mockFile = {
                     name: "photo",
                     size: 12345
@@ -203,7 +260,7 @@
                 this.emit("thumbnail", mockFile, path_photo);
             }
         };
-        $(".dz-progress").remove();
+        var myDropzone = new Dropzone("#my-dropzone");
         $('#upload-submit').on('click', function(e) {
             e.preventDefault();
             //trigger file upload select

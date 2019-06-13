@@ -6,7 +6,7 @@
 	</head>
 	<style>
 		html {
-			margin: 50px;
+			margin: 25px;
 			padding: 0;
 		}
 
@@ -30,13 +30,10 @@
 			<div id="date">
 				{{ date('d-m-Y') }}
 			</div>
-			<div id="title">
+			<div id="title" >
 				@yield('title') 
 			</div>
 		</header><!-- /header -->
 		@yield('content')
-		<footer>
-			<b>Sistema de vacaciones</b>
-		</footer>
 	</body>
 </html>

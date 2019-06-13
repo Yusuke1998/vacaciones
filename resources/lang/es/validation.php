@@ -139,7 +139,9 @@ return [
         'photo'             =>  'foto',
         'fecha_retiro'      =>  'fecha de retiro',
         'motivo_retiro'     =>  'motivo de retiro',
-        'date'              =>  'fecha'
+        'date'              =>  'fecha',
+        'status_worker'     =>  'estatus de trabajador',
+        'position_code'     =>  'codigo de cargo'
     ],
 
 ];
